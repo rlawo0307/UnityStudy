@@ -716,7 +716,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb2D: {fileID: 1947932944}
   sr: {fileID: 1947932941}
-  moveForce: 100
+  animator: {fileID: 1947932947}
+  moveForce: 5
   jumpForce: 250
 --- !u!95 &1947932947
 Animator:
