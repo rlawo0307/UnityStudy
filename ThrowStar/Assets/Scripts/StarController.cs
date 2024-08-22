@@ -6,40 +6,34 @@ using static UnityEngine.GraphicsBuffer;
 
 public class StarController : MonoBehaviour
 {
-    Vector3 startPosition;
-    Vector3 endPosition;
+    Vector3 mouseDownPos;
+    Vector3 mouseUpPos;
+    float yDir;
     float moveSpeed;
     float rotateSpeed;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
         if(Input.GetMouseButtonDown(0))
         {
-            startPosition = Input.mousePosition;
+            mouseDownPos = Input.mousePosition;
         }
         else if(Input.GetMouseButtonUp(0))
         {
-            endPosition = Input.mousePosition;
-            if(endPosition.y - startPosition.y > 0)
-            {
-                moveSpeed = 0.2f;
-                rotateSpeed = 10f;
-            }
-            else
-            {
-                moveSpeed = -0.2f;
-                rotateSpeed = -10f;
-            }
+            mouseUpPos = Input.mousePosition;
+
+            yDir = mouseUpPos.y - mouseDownPos.y;
+            
+            moveSpeed = yDir * 0.001f;
+            rotateSpeed = yDir * 0.1f;
         }
-        this.transform.Rotate(0, 0, rotateSpeed);
-        this.transform.Translate(0, moveSpeed, 0, Space.World);
+
+        //Mathf.Clamp() 사용해서 수정해보기
+        if (this.transform.position.y < 4.5 && this.transform.position.y > -4.5)
+        {
+            this.transform.Rotate(0, 0, rotateSpeed);
+            this.transform.Translate(0, moveSpeed, 0, Space.World);
+        }
 
         moveSpeed *= 0.96f;
         rotateSpeed *= 0.96f;
