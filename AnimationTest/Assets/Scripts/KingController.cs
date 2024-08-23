@@ -6,26 +6,33 @@ using UnityEngine;
 
 public class KingController : MonoBehaviour
 {
-    AnimatorClipInfo[] clipInfo;
     public Animator animator;
     public Rigidbody2D rb2D;
     public float moveForce;
     public float jumpForce;
-    
+    public int damage;
+    public bool isAttack = false;
+
+    string clipName;
     float remainTime;
     float h;
 
     public void Update()
     {
+        clipName = this.animator.GetCurrentAnimatorClipInfo(0)[0].clip.name;
+
         if (this.remainTime > 0)
         {
             this.remainTime -= Time.deltaTime;
+
+            if (clipName == "king_attack" && isAttack)
+            {
+                isAttack = false;
+            }
         }
         else
         {
-            clipInfo = this.animator.GetCurrentAnimatorClipInfo(0);
-
-            if (clipInfo[0].clip.name == "king_attack")
+            if (clipName == "king_attack")
             {
                 Debug.Log("공격이 끝났습니다");
             }
@@ -35,6 +42,7 @@ public class KingController : MonoBehaviour
                 animator.SetInteger("state", 2);
                 rb2D.velocity = new Vector2(0, 0);
                 this.remainTime = 0.429f;
+                isAttack = true;
             }
             else
             {
