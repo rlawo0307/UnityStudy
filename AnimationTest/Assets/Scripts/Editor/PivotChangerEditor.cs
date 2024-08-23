@@ -62,6 +62,9 @@ public class PivotChangerEditor : EditorWindow
         for (int i = 0; i < sprites.Length; i++)
         {
             Debug.Log($"Changing pivot for sprite {i} to {newPivot}");
+
+            // Ensure alignment is set to Custom
+            sprites[i].alignment = (int)SpriteAlignment.Custom;
             sprites[i].pivot = newPivot;
         }
 

@@ -12,56 +12,44 @@ public class KingController : MonoBehaviour
     public float moveForce;
     public float jumpForce;
     
-    
     float remainTime;
     float h;
-
-    void Start()
-    {
-
-    }
 
     public void Update()
     {
         if (this.remainTime > 0)
         {
             this.remainTime -= Time.deltaTime;
-            return;
-        }
-        
-        clipInfo = this.animator.GetCurrentAnimatorClipInfo(0);
-
-        if (clipInfo[0].clip.name == "king_attack")
-        {
-            Debug.Log("공격이 끝났습니다");
-            animator.SetInteger("state", 0);
-        }
-
-        /*
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            animator.SetInteger("state", 3);
-            rb2D.velocity = new Vector2(0f, jumpForce);
-        }
-        */
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            animator.SetInteger("state", 2);
-            this.remainTime = 0.429f;
         }
         else
         {
-            h = Input.GetAxisRaw("Horizontal");
+            clipInfo = this.animator.GetCurrentAnimatorClipInfo(0);
 
-            if(h == 0f)
+            if (clipInfo[0].clip.name == "king_attack")
             {
-                animator.SetInteger("state", 0);
+                Debug.Log("공격이 끝났습니다");
             }
+
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                animator.SetInteger("state", 2);
+                rb2D.velocity = new Vector2(0, 0);
+                this.remainTime = 0.429f;
+            
             else
             {
-                animator.SetInteger("state", 1);
-                rb2D.velocity = new Vector2(h * moveForce, 0);
-                this.transform.localScale = new Vector3(h, 1, 1);
+                h = Input.GetAxisRaw("Horizontal");
+
+                if (h == 0f)
+                {
+                    animator.SetInteger("state", 0);
+                }
+                else
+                {
+                    animator.SetInteger("state", 1);
+                    rb2D.velocity = new Vector2(h * moveForce, 0);
+                    this.transform.localScale = new Vector3(h, 1, 1);
+                }
             }
         }
     }
