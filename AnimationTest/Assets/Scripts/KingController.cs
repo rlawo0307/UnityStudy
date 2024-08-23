@@ -35,7 +35,7 @@ public class KingController : MonoBehaviour
                 animator.SetInteger("state", 2);
                 rb2D.velocity = new Vector2(0, 0);
                 this.remainTime = 0.429f;
-            
+            }
             else
             {
                 h = Input.GetAxisRaw("Horizontal");
