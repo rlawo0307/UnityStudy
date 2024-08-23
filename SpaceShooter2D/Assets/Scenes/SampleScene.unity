@@ -479,7 +479,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9f04693da761d94eafdb0b9eb60a896, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 5139431158739871376, guid: e13923e26776a314f898c1bfc24e3dd7, type: 3}
+  bulletPrefab: {fileID: 8145508010013175091, guid: e13923e26776a314f898c1bfc24e3dd7, type: 3}
   animator: {fileID: 704857876}
   moveSpeed: 2
 --- !u!95 &704857876
@@ -554,6 +554,10 @@ PrefabInstance:
     - target: {fileID: 8145508010013175091, guid: e13923e26776a314f898c1bfc24e3dd7, type: 3}
       propertyPath: m_Name
       value: PlayerBullet
+      objectReference: {fileID: 0}
+    - target: {fileID: 8145508010013175091, guid: e13923e26776a314f898c1bfc24e3dd7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
