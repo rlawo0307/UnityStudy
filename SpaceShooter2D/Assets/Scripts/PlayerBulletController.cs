@@ -5,7 +5,8 @@ using UnityEngine;
 public class PlayerBulletController : MonoBehaviour
 {
     public Rigidbody2D rg2D;
-    public float moveSpeed;
+    
+    float moveSpeed = 4;
 
     /*
     void Start()
@@ -22,13 +23,18 @@ public class PlayerBulletController : MonoBehaviour
         //rg2D.velocity = Vector2.up * moveSpeed;
     }
 
+    /*
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        collision.gameObject.GetComponent<EnemyAController>().isAttacked = true;
-        GameObject.Destroy(this.gameObject);
+        if (collision.gameObject.name == "EnemyA")
+        {
+            collision.gameObject.GetComponent<EnemyAController>().isAttacked = true;
+            GameObject.Destroy(this.gameObject);
+        }
     }
+    */
 
-    IEnumerator CoMove()
+        IEnumerator CoMove()
     {
         Debug.Log("aaa");
         while(true)

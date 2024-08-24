@@ -5,13 +5,26 @@ using UnityEngine;
 public class ShooterController : MonoBehaviour
 {
     public GameObject bulletPrefab;
+    public GameObject boomUIPrefab;
+    public GameObject lifeUIPrefab;
     public Animator animator;
-    public float moveSpeed;
+
+    GameObject[] lifeUIs;
+    float moveSpeed = 3;
+    int boomCount;
+    int lifeCount = 3;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        lifeUIs = new GameObject[3];
+
+        for(int i=0; i<3; i++)
+        {
+            lifeUIs[i] = Object.Instantiate(lifeUIPrefab);
+            lifeUIs[i].transform.position = new Vector2(-2.4f + 0.6f * i, 4.6f);
+            lifeUIs[i].SetActive(true);
+        }
     }
 
     // Update is called once per frame
@@ -56,5 +69,49 @@ public class ShooterController : MonoBehaviour
         GameObject bulletGo = Object.Instantiate(bulletPrefab);
         bulletGo.transform.position = new Vector3(shooterPos.x, shooterPos.y + 0.6f, 0);
         bulletGo.SetActive(true);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        string collisionName = collision.gameObject.name;
+
+        Debug.Log(collision.gameObject.name);
+        if (collisionName == "Boom(Clone)")
+        {
+            Debug.Log("ÆøÅºÀ» È¹µæÇß½À´Ï´Ù");
+            GameObject boomUIGO = Object.Instantiate(boomUIPrefab);
+            boomUIGO.transform.position = new Vector2(2.5f - 0.5f * this.boomCount, 4.7f);
+            boomUIGO.SetActive(true);
+            this.boomCount++;
+            Debug.Log(this.boomCount);
+            Object.Destroy(collision.gameObject);
+        }
+        else if (collisionName == "Coin(Clone)")
+        {
+            Debug.Log("ÄÚÀÎÀ» È¹µæÇß½À´Ï´Ù");
+            Object.Destroy(collision.gameObject);
+        }
+        else if(collisionName == "Power(Clone)")
+        {
+            Debug.Log("ÆÄ¿ö¸¦ È¹µæÇß½À´Ï´Ù");
+            Object.Destroy(collision.gameObject);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        string collisionName = collision.gameObject.name;
+
+        if (collisionName == "EnemyA(Clone)" || collisionName == "EnemyB(Clone)")
+        {
+            lifeCount--;
+            Object.Destroy(lifeUIs[lifeCount]);
+
+            if(lifeCount == 0)
+            {
+                Debug.Log("»ý¸í ¾øÀ½");
+                Object.Destroy(this.gameObject);
+            }    
+        }
     }
 }
