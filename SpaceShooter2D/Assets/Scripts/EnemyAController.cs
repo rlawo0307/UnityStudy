@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyAController : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class EnemyAController : MonoBehaviour
     float remainTime;
     float moveSpeed = 1.5f;
     bool isAttacked = false;
+    int score = 10;
 
     /*
     IEnumerator CoFade()
@@ -74,6 +76,10 @@ public class EnemyAController : MonoBehaviour
         {
             if (collision.gameObject.name == "PlayerBullet(Clone)")
             {
+                Text scoreText = GameObject.Find("Score").GetComponent<Text>();
+                int newScore = int.Parse(scoreText.text) + this.score;
+                scoreText.text = newScore.ToString();
+
                 isAttacked = true;
                 animator.SetBool("isAttacked", true);
                 remainTime = 0.700f;

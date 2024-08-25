@@ -22,7 +22,7 @@ public class EnemyAGenerator : MonoBehaviour
     private void CreateEnemyA()
     {
         GameObject enemyAGo = Object.Instantiate(enemyAPrefab);
-        enemyAGo.transform.position = new Vector3(Random.Range(-2.5f, 2.5f), 4, 0);
+        enemyAGo.transform.position = new Vector3(Random.Range(-1.25f, 1.25f), 3.77f, 0);
         enemyAGo.SetActive(true);
     }
 }

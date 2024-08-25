@@ -75,25 +75,20 @@ public class ShooterController : MonoBehaviour
     {
         string collisionName = collision.gameObject.name;
 
-        Debug.Log(collision.gameObject.name);
         if (collisionName == "Boom(Clone)")
         {
-            Debug.Log("ÆøÅºÀ» È¹µæÇß½À´Ï´Ù");
             GameObject boomUIGO = Object.Instantiate(boomUIPrefab);
             boomUIGO.transform.position = new Vector2(2.5f - 0.5f * this.boomCount, 4.7f);
             boomUIGO.SetActive(true);
             this.boomCount++;
-            Debug.Log(this.boomCount);
             Object.Destroy(collision.gameObject);
         }
         else if (collisionName == "Coin(Clone)")
         {
-            Debug.Log("ÄÚÀÎÀ» È¹µæÇß½À´Ï´Ù");
             Object.Destroy(collision.gameObject);
         }
         else if(collisionName == "Power(Clone)")
         {
-            Debug.Log("ÆÄ¿ö¸¦ È¹µæÇß½À´Ï´Ù");
             Object.Destroy(collision.gameObject);
         }
     }
@@ -109,7 +104,6 @@ public class ShooterController : MonoBehaviour
 
             if(lifeCount == 0)
             {
-                Debug.Log("»ý¸í ¾øÀ½");
                 Object.Destroy(this.gameObject);
             }    
         }

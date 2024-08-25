@@ -8,31 +8,10 @@ public class PlayerBulletController : MonoBehaviour
     
     float moveSpeed = 4;
 
-    /*
-    void Start()
-    {
-        //StartCoroutine(CoMove());
-    }
-    */
-
     void Update()
     {
         this.transform.Translate(new Vector2(0, 1) * this.moveSpeed * Time.deltaTime);
-        //rg2D.velocity = Vector2.up * moveSpeed;
-        //Debug.Log(this.transform.position);
-        //rg2D.velocity = Vector2.up * moveSpeed;
     }
-
-    /*
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.name == "EnemyA")
-        {
-            collision.gameObject.GetComponent<EnemyAController>().isAttacked = true;
-            GameObject.Destroy(this.gameObject);
-        }
-    }
-    */
 
         IEnumerator CoMove()
     {
