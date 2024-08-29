@@ -1,23 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BoomController : MonoBehaviour
-{
-    float moveSpeed = 2;
+{ 
+    public Animator animator;
 
-    // Start is called before the first frame update
-    void Start()
+    float remainTime;
+
+    private void Start()
     {
-        
+        remainTime = 0.3f;
+        animator.SetBool("state", true);
+        Debug.Log(remainTime);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        this.transform.Translate(Vector2.down * moveSpeed * Time.deltaTime);
-
-        if (this.transform.position.y <= -5.33f) // 화면을 넘어가면 제거
+        Debug.Log(remainTime);
+        if(remainTime > 0)
+        {
+            remainTime -= Time.deltaTime;
+        }
+        else
         {
             Object.Destroy(this.gameObject);
         }

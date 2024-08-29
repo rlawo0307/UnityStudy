@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class EnemyAController : MonoBehaviour
 {
-    public GameObject boomPrefab;
+    public GameObject bombPrefab;
     public GameObject coinPrefab;
     public GameObject powerPrefab;
     public Animator animator;
@@ -58,7 +58,7 @@ public class EnemyAController : MonoBehaviour
 
                     switch(itemType)
                     {
-                        case 0: itemGo = Object.Instantiate(boomPrefab); break;
+                        case 0: itemGo = Object.Instantiate(bombPrefab); break;
                         case 1: itemGo = Object.Instantiate(coinPrefab); break;
                         default: itemGo = Object.Instantiate(powerPrefab); break; // case 2
                     }
@@ -76,9 +76,11 @@ public class EnemyAController : MonoBehaviour
         {
             if (collision.gameObject.name == "PlayerBullet(Clone)")
             {
+                /*
                 Text scoreText = GameObject.Find("Score").GetComponent<Text>();
                 int newScore = int.Parse(scoreText.text) + this.score;
                 scoreText.text = newScore.ToString();
+                */
 
                 isAttacked = true;
                 animator.SetBool("isAttacked", true);

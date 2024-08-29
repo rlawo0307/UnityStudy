@@ -5,13 +5,14 @@ using UnityEngine;
 public class ShooterController : MonoBehaviour
 {
     public GameObject bulletPrefab;
-    public GameObject boomUIPrefab;
+    public GameObject bombUIPrefab;
+    public GameObject boomPrefab;
     public GameObject lifeUIPrefab;
     public Animator animator;
 
     GameObject[] lifeUIs;
     float moveSpeed = 3;
-    int boomCount;
+    int bombCount;
     int lifeCount = 3;
 
     // Start is called before the first frame update
@@ -36,6 +37,10 @@ public class ShooterController : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space))
         {
             CreateBullet();
+        }
+        else if(Input.GetKeyDown(KeyCode.B))
+        {
+            GameObject boomGo = Object.Instantiate(boomPrefab);
         }
 
         if(h == 0)
@@ -75,12 +80,12 @@ public class ShooterController : MonoBehaviour
     {
         string collisionName = collision.gameObject.name;
 
-        if (collisionName == "Boom(Clone)")
+        if (collisionName == "Bomb(Clone)")
         {
-            GameObject boomUIGO = Object.Instantiate(boomUIPrefab);
-            boomUIGO.transform.position = new Vector2(2.5f - 0.5f * this.boomCount, 4.7f);
-            boomUIGO.SetActive(true);
-            this.boomCount++;
+            GameObject bombUIGO = Object.Instantiate(bombUIPrefab);
+            bombUIGO.transform.position = new Vector2(2.5f - 0.5f * this.bombCount, 4.7f);
+            bombUIGO.SetActive(true);
+            this.bombCount++;
             Object.Destroy(collision.gameObject);
         }
         else if (collisionName == "Coin(Clone)")

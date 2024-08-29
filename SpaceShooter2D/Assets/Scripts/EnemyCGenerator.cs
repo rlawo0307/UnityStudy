@@ -14,7 +14,7 @@ public class EnemyCGenerator : MonoBehaviour
 
         if (this.elapsedTime > 1f)
         {
-            this.CreateEnemyC();
+            //this.CreateEnemyC();
             this.elapsedTime = 0;
         }
     }

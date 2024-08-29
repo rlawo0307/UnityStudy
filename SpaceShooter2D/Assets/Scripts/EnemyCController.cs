@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyCController : MonoBehaviour
 {
-    public GameObject boomPrefab;
+    public GameObject bombPrefab;
     public GameObject coinPrefab;
     public GameObject powerPrefab;
     public Animator animator;
@@ -38,7 +38,7 @@ public class EnemyCController : MonoBehaviour
 
                     switch (itemType)
                     {
-                        case 0: itemGo = Object.Instantiate(boomPrefab); break;
+                        case 0: itemGo = Object.Instantiate(bombPrefab); break;
                         case 1: itemGo = Object.Instantiate(coinPrefab); break;
                         default: itemGo = Object.Instantiate(powerPrefab); break; // case 2
                     }

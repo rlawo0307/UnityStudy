@@ -14,7 +14,7 @@ public class EnemyBGenerator : MonoBehaviour
 
         if (this.elapsedTime > 1f)
         {
-            this.CreateEnemyB();
+            //this.CreateEnemyB();
             this.elapsedTime = 0;
         }
     }
