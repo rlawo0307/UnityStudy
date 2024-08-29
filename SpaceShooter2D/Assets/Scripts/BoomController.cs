@@ -13,12 +13,10 @@ public class BoomController : MonoBehaviour
     {
         remainTime = 0.3f;
         animator.SetBool("state", true);
-        Debug.Log(remainTime);
     }
 
     private void Update()
     {
-        Debug.Log(remainTime);
         if(remainTime > 0)
         {
             remainTime -= Time.deltaTime;
@@ -26,6 +24,14 @@ public class BoomController : MonoBehaviour
         else
         {
             Object.Destroy(this.gameObject);
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if(col.gameObject.name == "EnemyA(Clone)")
+        {
+            Object.Destroy(col.gameObject);
         }
     }
 }
