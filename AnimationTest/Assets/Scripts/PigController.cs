@@ -7,6 +7,8 @@ using UnityEngine;
 
 public class PigController : MonoBehaviour
 {
+    public Canvas canvas;
+    public GameObject UIdamageTextPrefab;
     public GameObject king;
     public Transform kingTrans;
     public Animator animator;
@@ -23,6 +25,10 @@ public class PigController : MonoBehaviour
         if (remainTime > 0)
         {
             remainTime -= Time.deltaTime;
+
+            Vector2 startPos = this.transform.position;
+            Vector2 endPos = new Vector2(startPos.x + 1, startPos.y);
+            this.transform.position = Vector3.Lerp(startPos, endPos, remainTime);
         }
         else
         {
@@ -48,9 +54,14 @@ public class PigController : MonoBehaviour
 
             if (isCollided)
             {
-                this.hp -= king.GetComponent<KingController>().damage;
+                int kingDamage = king.GetComponent<KingController>().damage;
+                this.hp -= kingDamage;
                 animator.SetInteger("state", 1);
                 this.remainTime = 0.286f;
+
+                GameObject UIdamageTextGo = Object.Instantiate(UIdamageTextPrefab);
+                UIdamageTextGo.transform.SetParent(canvas.transform); // Canvas 아래에 등록
+                UIdamageTextGo.transform.position = Camera.main.WorldToScreenPoint(this.transform.position);
             }
         }
     }
