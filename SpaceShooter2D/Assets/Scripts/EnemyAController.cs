@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
 public class EnemyAController : MonoBehaviour
@@ -16,6 +17,8 @@ public class EnemyAController : MonoBehaviour
     float moveSpeed = 1.5f;
     bool isAttacked = false;
     int score = 10;
+
+    public System.Action<int> onChangeState; // Action ´ë¸®ÀÚ
 
     /*
     IEnumerator CoFade()
@@ -65,6 +68,7 @@ public class EnemyAController : MonoBehaviour
                     itemGo.transform.position = new Vector3(enemeyAPos.x, enemeyAPos.y, 0);
                     itemGo.SetActive(true);
                 }
+                this.onChangeState(score);
                 GameObject.Destroy(this.gameObject);
             }
         }
