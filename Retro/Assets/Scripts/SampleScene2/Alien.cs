@@ -14,9 +14,13 @@ public class Alien : MonoBehaviour
 
         Debug.Log(this.transform.rotation.eulerAngles);
         */
+
+        Debug.Log(this.transform.position);
+        Debug.Log(this.transform.localPosition);
     }
 
     // Update is called once per frame
+    /*
     void Update()
     {
         if(Input.GetMouseButtonDown(0))
@@ -24,4 +28,5 @@ public class Alien : MonoBehaviour
             this.transform.rotation *= Quaternion.Euler(new Vector3(10, 0, 0));
         }
     }
+    */
 }
