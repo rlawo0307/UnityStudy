@@ -12,6 +12,7 @@ public class Female : MonoBehaviour
 
         DrawArrow.ForDebug(this.transform.position, Vector3.forward, 20, Color.blue);
         DrawArrow.ForDebug(this.transform.position, this.transform.forward, 20, Color.yellow);
+
     }
 
     // Update is called once per frame
