@@ -13,7 +13,7 @@ public class LerpMain : MonoBehaviour
     public float duration = 2f;
 
     private float elapsedTime;
-    private float t = 0;
+    //private float t = 0;
 
     void Start()
     {

@@ -29,7 +29,24 @@ public class PlayerShooter : MonoBehaviour {
 
     private void Update() {
         // 입력을 감지하고 총 발사하거나 재장전
+        if(playerInput.fire)
+        {
+            gun.Fire();
+        }
+        else if(playerInput.reload)
+        {
+            if(gun.Reload())
+            {
+                playerAnimator.SetTrigger("Reload");
+            }
+        }
+        UpdateUI();
     }
+
+    [SerializeField][Range(0, 1)] private float leftHandPositionWeight = 1f;
+    [SerializeField][Range(0, 1)] private float leftHandRotationWeight = 1f;
+    [SerializeField][Range(0, 1)] private float rightHandPositionWeight = 1f;
+    [SerializeField][Range(0, 1)] private float rightHandRotationWeight = 1f;
 
     // 탄약 UI 갱신
     private void UpdateUI() {
@@ -42,6 +59,16 @@ public class PlayerShooter : MonoBehaviour {
 
     // 애니메이터의 IK 갱신
     private void OnAnimatorIK(int layerIndex) {
-        
+        gunPivot.position = playerAnimator.GetIKHintPosition(AvatarIKHint.RightElbow);
+
+        playerAnimator.SetIKPositionWeight(AvatarIKGoal.LeftHand, leftHandPositionWeight);
+        playerAnimator.SetIKRotationWeight(AvatarIKGoal.LeftHand, leftHandRotationWeight);
+        playerAnimator.SetIKPosition(AvatarIKGoal.LeftHand, leftHandMount.position);
+        playerAnimator.SetIKRotation(AvatarIKGoal.LeftHand, leftHandMount.rotation);
+
+        playerAnimator.SetIKPositionWeight(AvatarIKGoal.RightHand, rightHandPositionWeight);
+        playerAnimator.SetIKRotationWeight(AvatarIKGoal.RightHand, rightHandRotationWeight);
+        playerAnimator.SetIKPosition(AvatarIKGoal.RightHand, rightHandMount.position);
+        playerAnimator.SetIKRotation(AvatarIKGoal.RightHand, rightHandMount.rotation);
     }
 }
